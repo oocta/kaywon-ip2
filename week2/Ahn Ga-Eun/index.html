@@ -25,10 +25,22 @@
 			
 		}
 		//Quest02 전역변수인 document의 프로퍼티 및 메서드를 콘솔에 출력하는 반복문 작성
-		while(){
-			console.log();
+		for(property in document){
+			console.log(document[property]);
 		}
+		for(method in document){
+			console.log(document[method]);
+		}
+		//Quest03 객체, 배열, 반복문과 함수를 이용하여 자신을 소개하는 문자열 출력
+		var aboutMe=["계원예술대학교", "디지털미디어 디자인과"];
 		
+		function selfPR(){
+			aboutMe.push("안가은");
+			for(var i=0; i<3; i++){
+				alert(aboutMe);
+			}
+		}
+		selfPR();
 	  </script>
     <!-- //Script -->
   </body>
