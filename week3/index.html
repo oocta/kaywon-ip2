@@ -1,64 +1,49 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Interaction Programming : part 2 - week3</title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- //jQuery -->
+    <!-- BootStrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<head>
-  <meta charset="utf-8">
-  <title>Interaction Programming - Part 2 : jQuery</title>
-</head>
-<style media="screen">
-  a {text-decoration: initial;color: #000;}
-  .active {color: #FF6600}
-  .current {color:#fff666;}
-  .index-zero {color:#ff2200;}
-  .inner-span {color:#ff4400;}
-  .red {background-color:#ff4400;}
-</style>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<body>
-  <nav>
-    <ul id="navigation">
-      <li>
-        <a id="m01" href="#m01">menu01</a>
-      </li>
-      <li class="prev">
-        <a href="#" class="cls02">menu<span>02</span></a>
-      </li>
-      <li class="next">
-        <a href="#">menu03</a>
-      </li>
-      <li data-role="link">
-        <a href="#">menu<span>04</span></a>
-      </li>
-      <li>
-        <a href="#">menu05</a>
-      </li>
-      <li>
-        <a href="#">menu06</a>
-      </li>
-      <li>
-        <a href="#">menu07</a>
-      </li>
-      <li>
-        <a href="#">menu08</a>
-      </li>
-      <li class="last">
-        <a href="#">menu09</a>
-      </li>
-    </ul>
-  </nav>
-  <section>
-    <div id="radioContainer">
-      <input id="radio01" type="radio" name="radio01" value="1" />
-      <label for="radio01">RADIO01</label>
-      <input id="radio02" type="radio" name="radio01" value="1" />
-      <label for="radio02">RADIO02</label>
-      <input id="radio03" type="radio" name="radio01" value="1" />
-      <label for="radio03">RADIO03</label>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- //BootStrap -->
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <h1>Week3</h1>
+      <ul class="nav nav-pills" id="container">
+        <li role="presentation" class="active"><a href="#">Home</a></li>
+        <li role="presentation"><a href="#">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+      </ul>
     </div>
-  </section>
-  <script type="text/javascript" src="./js/jquery.js"></script>
-  <script type="text/javascript">
-  </script>
-</body>
+    <!-- Javascript -->
+    <script type="text/javascript">
+      var members = ['sample'];
+      var container = $('#container').html('');
 
+      function addMemberList() {
+        members.forEach(function (item) {
+          var memButton = $('<li/>', {role: 'presentaion'});
+          var aTag = $('<a/>', {href: './' + item, html: item}).appendTo(memButton);
+          container.append(memButton);
+        });
+      }
+
+      $(function () {
+        addMemberList();
+      });
+    </script>
+  </body>
 </html>
