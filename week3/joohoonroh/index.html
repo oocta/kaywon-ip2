@@ -58,8 +58,15 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
-    $('#radioContainer').parent().length;
-    alert($('#radioContainer').parent().length);
+    console.log($("input[id=radio01]").val());
+    console.log($("label[for=radio01]").prev().val());
+    console.log($("label").prev("#radio01").val());
+    console.log($("#radioContainer").children("input[id='radio01']").val());
+    console.log($("input").eq(0).val());
+    console.log($("input[name=radio01]").eq(0).val());
+    console.log($("label").eq(0).prev().val());
+    console.log($("#radioContainer").children().eq(0).val());
+    console.log($("#radioContainer").children("input").eq(0).val());
   </script>
 </body>
 
