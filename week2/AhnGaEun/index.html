@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Interaction Programming : part 2 - Week 2</title>
+  </head>
+  <body>
+    <!-- Item List -->
+    <section>
+      <ul id="itemList">
+
+      </ul>
+    </section>
+    <!-- //Item List -->
+
+    <!-- Script -->
+    <script type="text/javascript">
+      //Statement here.
+		
+		//Quest01
+		var cars = ['sonata', 'spark', 'malibu', 'sorento'];
+		
+		var rev = cars.reverse(); //cars의 원소 배열을 반대로
+		for(var i=0; i <= rev.length; i++){
+			
+		}
+		//Quest02 전역변수인 document의 프로퍼티 및 메서드를 콘솔에 출력하는 반복문 작성
+		for(property in document){
+			console.log(document[property]);
+		}
+		for(method in document){
+			console.log(document[method]);
+		}
+		//Quest03 객체, 배열, 반복문과 함수를 이용하여 자신을 소개하는 문자열 출력
+		var aboutMe=["계원예술대학교", "디지털미디어 디자인과"];
+		
+		function selfPR(){
+			aboutMe.push("안가은");
+			for(var i=0; i<3; i++){
+				alert(aboutMe);
+			}
+		}
+		selfPR();
+	  </script>
+    <!-- //Script -->
+  </body>
+</html>
