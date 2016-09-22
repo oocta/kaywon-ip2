@@ -61,8 +61,12 @@
   <script type="text/javascript">
   </script>
    <script>
-        alert($('#radioContainer').children().width());
-        alert($('.cls02').parent().index());
+        alert($('#radio01').val());
+        alert($('#radioContainer').children(1).val());
+        alert($('#radio03').parent().children(1).val());
+        alert($('#radio02').prevAll('input').val());
+        var val = $('#radio01').val();
+        alert(val);
    </script>
 </body>
 
