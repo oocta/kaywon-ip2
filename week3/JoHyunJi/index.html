@@ -68,6 +68,12 @@
 	  alert($('#radioContainer').children().length);
 	  //Quest 07
 	  alert($('.cls02').parent().index());
+	  //Quest 08
+	  console.log($("input[id='radio01']").val());
+	  console.log($("label[for='radio01']").prev().val());
+	  console.log($('#radioContainer').children("input[id='radio01']").val());
+	  console.log($('#radioContainer').children().eq(0).val());
+	  console.log($("input[id='radio01']").parent().children().eq(0).val());
   </script>
 </body>
 
