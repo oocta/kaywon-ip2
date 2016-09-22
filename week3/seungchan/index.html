@@ -61,6 +61,12 @@
       $('li').addClass('active');
       $('a.cls02').addClass('current');
       $('li').eq(0).addClass('index-zero');
+      $("#radioContainer").children().click(function(){
+        alert($(this).width());
+      });
+      $('a.cls02').parent().click(function(){
+        alert($(this).index());
+      });
     </script>
   </body>
 
