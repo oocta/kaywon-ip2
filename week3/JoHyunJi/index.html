@@ -74,6 +74,9 @@
 	  console.log($('#radioContainer').children("input[id='radio01']").val());
 	  console.log($('#radioContainer').children().eq(0).val());
 	  console.log($("input[id='radio01']").parent().children().eq(0).val());
+	  console.log($("label[for='radio03']").prevAll("input[id='radio01']").val());
+	  //Quest 09 menu07 텍스트를 포함하고있는 a엘리먼트를 셀렉트 할 수 있는 모든 방법
+	  $('a').has('menu07');
   </script>
 </body>
 
