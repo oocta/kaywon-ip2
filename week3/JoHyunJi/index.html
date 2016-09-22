@@ -4,10 +4,6 @@
 <head>
   <meta charset="utf-8">
   <title>Interaction Programming - Part 2 : jQuery</title>
-<<<<<<< HEAD
-  
-=======
->>>>>>> pr/13
 </head>
 <style media="screen">
   a {text-decoration: initial;color: #000;}
@@ -50,11 +46,6 @@
       </li>
     </ul>
   </nav>
-<<<<<<< HEAD
-  
-  
-=======
->>>>>>> pr/13
   <section>
     <div id="radioContainer">
       <input id="radio01" type="radio" name="radio01" value="1" />
@@ -67,6 +58,25 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
+	  //Quest 01
+	  $('li').addClass('active');
+	  //Quest 02
+	  $("a[class='cls02']").addClass('current');
+	  //Quest 03
+	  $('li').eq(0).addClass('index-zero');
+	  //Quest 06
+	  alert($('#radioContainer').children().length);
+	  //Quest 07
+	  alert($('.cls02').parent().index());
+	  //Quest 08
+	  console.log($("input[id='radio01']").val());
+	  console.log($("label[for='radio01']").prev().val());
+	  console.log($('#radioContainer').children("input[id='radio01']").val());
+	  console.log($('#radioContainer').children().eq(0).val());
+	  console.log($("input[id='radio01']").parent().children().eq(0).val());
+	  console.log($("label[for='radio03']").prevAll("input[id='radio01']").val());
+	  //Quest 09 menu07 텍스트를 포함하고있는 a엘리먼트를 셀렉트 할 수 있는 모든 방법
+	  $('a').has('menu07');
   </script>
 </body>
 
