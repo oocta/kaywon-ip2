@@ -65,7 +65,13 @@
 
     $('.radioContainer').children();//q06
     $('a.cls02').parent().index();//q07
-    $('#radio01').prevAll();//q08
+    console.log($('#radio01').next());//q08
+    console.log($('#radio01').nextAll());//q08
+    console.log($('#radio01').prevAll());//q08
+
+    $('a:eq(6)');//q09
+    $('a.eq(5)').next();//q09
+    $('a.eq(7)').prev();//q09
   </script>
 </body>
 
