@@ -14,6 +14,7 @@
   .red {background-color:#ff4400;}
 </style>
 
+
 <body>
   <nav>
     <ul id="navigation">
@@ -58,7 +59,24 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
-    $('li:has("menu07")')
+      $('li').addClass('active');
+      //li에 active클래스를 추가한다.
+      $('a.cls02').addClass('current');
+      //2.문서내의 a 태그들 중 cls02 클래스를 가진 노드를 선택하고, 해당태그에 current클래스를 추가합시다
+      $('li').eq(0).addClass('index-zero');
+      //3.문서내의 li태그들중 0인덱스에 위치한 노드를 선택하고, 해당태그에 index-zero클래스를 추가합시다.
+      
+      alert($('#radioContainer').children().length);
+      
+      alert($('.cls02').parent().index());
+      
+      $('[for="radio01"]').prev();
+      $('[for="radio03"]').prevAll('#radio01');
+      $('#radioContainer').next();
+      $('#radioContainer').nextAll('#radio01');
+      $('#radioContainer').children('#radio01');
+      
+      
   </script>
 </body>
 

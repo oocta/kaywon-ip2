@@ -56,10 +56,27 @@
       <label for="radio03">RADIO03</label>
     </div>
   </section>
-  <script type="text/javascript" src="./js/jquery.js"></script>
-  <script type="text/javascript">
-    $('li:has("menu07")')
+  <script type="text/javascript" src="./js/jquery.js">
   </script>
+  <script type="text/javascript">
+    $('li').addClass('active');//q01
+    $('a.cls02').addClass('current');//q02
+    $('li:eq(0)').addClass('index-zero');//q03
+
+    $('.radioContainer').children();//q06
+    $('a.cls02').parent().index();//q07
+    console.log($('#radio01').next());//q08
+    console.log($('#radio01').nextAll());//q08
+    console.log($('#radio01').prevAll());//q08
+
+    $('a:eq(6)');//q09
+    $('a.eq(5)').next();//q09
+    $('a.eq(7)').prev();//q09
+  </script>
+   <script>
+       alert($('li').children(7));
+       alert($('.last').prevAll('li:nth-child(7)'));
+   </script>
 </body>
 
 </html>

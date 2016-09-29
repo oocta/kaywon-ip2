@@ -58,7 +58,8 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
-    $('li:has("menu07")')
+    $('li').prev().prev().last().addClass('active');
+      //menu07텍스트를 포함하고 있는 a엘리먼트를 셀렉트 하는 방법
   </script>
 </body>
 
