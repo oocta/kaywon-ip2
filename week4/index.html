@@ -28,6 +28,12 @@
 		<script type="text/javascript">
 			//자바스크립트 코드 작성 영역
 			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+
+			var container = $('#sliderContainer');
+			for (var i = 0, loop = imageNames.length; i < loop; i++) {
+				var item = $('<li/>').append($('<img src="' + imageNames[i] + '"/>'));
+				container.append(item);
+			}
 		</script>
 	</body>
 </html>

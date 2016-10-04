@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sample Codes - Week5</title>
+  </head>
+  <style media="screen">
+    .blind {display: none;}
+    .box {display: block; width: 100px; height: 100px;}
+    .red {background-color: red;}
+    .blue {background-color: blue;}
+  </style>
+  <body>
+
+    <h1 style="padding:5px">My Portfolios</h1>
+
+    <div class="blind">Blind</div>
+
+    <a class="link">link button</a>
+
+    <ul id="items" class="container all" data-role="group">
+      <li>item01</li>
+      <li>item02</li>
+    </ul>
+
+    <div class="box red" id="box"></div>
+    <div class="box blue" id="subBox"></div>
+
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript">
+      // Object 생성방법
+      $(function () {
+
+        //animate options : duration (Number or String)
+        // $('#box').animate({'width': '300px'}, 1000);
+        // $('#box').animate({'width': '300px'}, 5000);
+
+        //animate options : easing (String)
+        // $('#box').animate({'width': '300px'}, 4000, 'swing');
+        // $('#box').animate({'width': '300px'}, 4000, 'linear');
+
+        //animate options : queue (Boolean)
+        // $('#box').animate({'width': '300px'}, {queue: true, duration: 2000});
+        // $('#box').animate({'height': '400px'}, {queue: true, duration: 3000});
+
+        //animate options : queue (String) 1.7이상
+        // $('#box').animate({'width': '300px'}, {queue: 'box', duration: 2000});
+        // $('#box').animate({'height': '400px'}, {queue: 'boxHeight', duration: 3000});
+        // $('#box').dequeue('box');
+        // setTimeout(function () {
+        //   $('#box').dequeue('boxHeight');
+        // }, 3000);
+
+        //animate options : step (String) 1.7이상
+        // $('#box').animate({'width': '300px'}, {duration: 2000, step: function (now, fx) {
+        //   console.log(fx);
+        //   $('#subBox').height(now);
+        // }});
+
+        //animate options : complete
+        var time = (new Date()).getTime();
+        $('#box').animate({'width': '300px'}, {duration: 3000, complete: function () {
+          var afterTime = (new Date()).getTime();
+          alert(afterTime - time);
+        }});
+
+        //animate options : done 1.8 이상
+        // var time = (new Date()).getTime();
+        // $('#box').animate({'width': '300px'}, {duration: 3000, done: function () {
+        //   var afterTime = (new Date()).getTime();
+        //   alert(afterTime - time);
+        // }});
+      });
+    </script>
+  </body>
+</html>
