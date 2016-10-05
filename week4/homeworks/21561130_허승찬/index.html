@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+ <head>
+ 
+  <title>4weeks</title>
+   <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/index.css">
+   <link rel="stylesheet" href="./css/normalize.css">
+  
+
+
+</head>
+ <body>
+   <!--Quest 01
+ “이미지슬라이더”라는 컨텐츠를 가진 h1 태그를 생
+ “이미지슬라이더”라는 컨텐츠를 가진 h1 태그를 생
+ 성하고, body 노드의 첫번째 노드로 추가합시다.
+ <h1>이미지슬라이더</h1>-->
+   <!--Quest 02
+ imageNames 배열의 원소 수 만큼 li 노드객체를 생
+ 성합시다.
+ for 반복문, $(‘<div></div>’)
+ ————————————————————————————
+ Quest 03
+ 배열의 원소를 src attrubute로 갖는 img 노드를 생
+ 성하고, Q2에서 생성한 li 노드에 추가합시다.
+ <img src=“…” />, append, appendTo-->
+ <h1>이미지슬라이더</h1>
+  <p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+  <section>
+   <div id="imageSlider" class="imageSlider">
+    <ul id="sliderContainer" class="sliderContainer">
+     <!-- 슬라이더 아이템의 위치 -->
+    </ul>
+    <div id="controller" class="controller">
+     <button id="leftButton" class="left">왼쪽으로</button>
+     <button id="rightButton" class="right">오른쪽으로</button>
+    </div>
+   </div>
+    <p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+    <p id="error" class="error">저를 삭제해주세요.</p>
+    <p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+  </section>
+   <script type="text/javascript" src="./js/jquery.js"></script>
+ <script>
+  var $body = $('body');
+  var $h1 = $('<h1>이미지슬라이더</h1>');
+  $("body").prepend($("h1")); //QUEST1
+  
+  var imageNames = ['imgs/image01.jpg', 'imgs/image02.jpg', 'imgs/image03.jpg'];
+  for(var i=0; i<imageNames.length; i++){
+   $('ul#sliderContainer').append('<li><img src="'+imageNames[i]+'"</li>');
+  };  //QUEST234
+  
+  var imageNames=[]
+  //QUEST5
+  var $moveTop = $('p#moveTop');
+  //QUEST6
+  var $moveBottom = $('p#moveBottom');
+
+  var $err = $('p#error');
+  var $test = $('p#test');
+  $body.prepend($moveTop).append($moveBottom);
+  //QUEST7
+  $err.remove();
+  //QUEST8
+  $test.text('수정되었습니다')
+  $test.html('');
+</script>
+</body>
+</html>
