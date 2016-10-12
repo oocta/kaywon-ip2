@@ -46,7 +46,6 @@
       </li>
     </ul>
   </nav>
-  
   <section>
     <div id="radioContainer">
       <input id="radio01" type="radio" name="radio01" value="1" />
@@ -59,10 +58,20 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
-    var s = function(){
-        alert($('#radioContainer').children().length);
-    };
-      s();
+      // quest01 $('li').addClass('active');
+      // quest02 $('.cls02').addClass('current')
+      // quest03 $('li').eq(0).addClass('index-zero');
+      // quest06 alert($('#radioContainer').children().length);
+      // quest07 alert($('.cls02').parent().index());
+      
+      $('#radio01').val();
+      $('#radioContainer').children().eq(0).val();
+      $('input:first').val();
+      $('label').eq(0).prev().val();
+      $('#radioContainer:has(input)').eq(0).val();
+      
+      $('a').eq(6)
+      $('ul').children('li:has(a)').eq(6)
   </script>
 </body>
 

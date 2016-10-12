@@ -46,7 +46,6 @@
       </li>
     </ul>
   </nav>
-  
   <section>
     <div id="radioContainer">
       <input id="radio01" type="radio" name="radio01" value="1" />
@@ -59,11 +58,24 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
-    var s = function(){
-        alert($('#radioContainer').children().length);
-    };
-      s();
-  </script>
+  $('li').addClass('active'); //1. li 셀렉트, addclass 메서드 이용 active 클래스 추가
+  $('a.cls02').addClass('current'); //2. a 태그 중 cls02 클래스 노드 선택, current 클래스 추가
+  $('li').eq(0).addclass('index-zero'); //3. li 태그 중 0인덱스에 위치한 노드 선택, index-zero 클래스 추가
+  
+  $('#radioContainer').children().length({alert()});
+  //6. radioContainer 아이디를 가지고 있는 노드의 자식 노드들의 길이를 alert를 이용해 출력
+  $('.cls02').parent().index({alert()});
+  //7. c ls02 클래스를 가지고 있는 노드의 부모노드를 찾고 그 index를 alert를 이용해 출력
+
+  $('input').index();
+  $('#radioContainer').children();
+  //8. 아이디radio01인 input radio 엘리먼트의 value를 출력하는 모든 방법
+
+  $('li').index('menu07');
+  $('li:last').prevAll();
+  $('li').nextAll();
+  //9. menu 07텍스트를 포함하고 있는 a 엘리먼트를 셀렉트 할 수 있는 모든 방법
+</script>
 </body>
 
 </html>

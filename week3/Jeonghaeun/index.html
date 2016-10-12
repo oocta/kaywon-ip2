@@ -15,6 +15,7 @@
 </style>
 
 <body>
+
   <nav>
     <ul id="navigation">
       <li>
@@ -46,7 +47,6 @@
       </li>
     </ul>
   </nav>
-  
   <section>
     <div id="radioContainer">
       <input id="radio01" type="radio" name="radio01" value="1" />
@@ -59,11 +59,11 @@
   </section>
   <script type="text/javascript" src="./js/jquery.js"></script>
   <script type="text/javascript">
-    var s = function(){
-        alert($('#radioContainer').children().length);
-    };
-      s();
   </script>
+   <script>
+       alert($('li').children(7));
+       alert($('.last').prevAll('li:nth-child(7)'));
+   </script>
 </body>
 
 </html>
