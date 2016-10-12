@@ -12,64 +12,102 @@
   </style>
   <body>
 
-    <h1 style="padding:5px">My Portfolios</h1>
+    <div class="outter" style="width:200px; height: 200px; background-color: red;">
+      <div class="inner" style="width:100px; height: 100px; background-color: blue;"></div>
+    </div>
 
-    <div class="blind">Blind</div>
-
-    <a class="link">link button</a>
-
-    <ul id="items" class="container all" data-role="group">
-      <li>item01</li>
-      <li>item02</li>
+    <ul id="eachContainer">
+      <li>menu</li>
     </ul>
-
-    <div class="box red" id="box"></div>
-    <div class="box blue" id="subBox"></div>
 
     <script type="text/javascript" src="./js/jquery.js"></script>
     <script type="text/javascript">
       // Object 생성방법
       $(function () {
 
-        //animate options : duration (Number or String)
-        // $('#box').animate({'width': '300px'}, 1000);
-        // $('#box').animate({'width': '300px'}, 5000);
+        //mouseenter vs mouseover
+        $('.outter').on('mouseenter', function (evt) {
+          console.log(evt.type);
+        });
+        $('.outter').on('mouseover', function (evt) {
+          console.log(evt.type);
+        });
 
-        //animate options : easing (String)
-        // $('#box').animate({'width': '300px'}, 4000, 'swing');
-        // $('#box').animate({'width': '300px'}, 4000, 'linear');
+        var menusArray = ['arr-sub1', 'arr-sub2', 'arr-sub3'];
+        var $eachContainer = $('#eachContainer');
 
-        //animate options : queue (Boolean)
-        // $('#box').animate({'width': '300px'}, {queue: true, duration: 2000});
-        // $('#box').animate({'height': '400px'}, {queue: true, duration: 3000});
+        //for... case
+        // for (var m = 0, loop = menusArray.length; m < loop; m++) {
+        //   var $li = $('<li/>', {text: menusArray[m]});
+        //   $eachContainer.append($li);
+        // }
 
-        //animate options : queue (String) 1.7이상
-        // $('#box').animate({'width': '300px'}, {queue: 'box', duration: 2000});
-        // $('#box').animate({'height': '400px'}, {queue: 'boxHeight', duration: 3000});
-        // $('#box').dequeue('box');
-        // setTimeout(function () {
-        //   $('#box').dequeue('boxHeight');
-        // }, 3000);
+        //$.each case
+        // $.each(menusArray, function (index, item) {
+        //   var $li = $('<li/>', {text: menusArray[index]});
+        //   // var $li = $('<li/>', {text: item});
+        //   $eachContainer.append($li);
+        // });
 
-        //animate options : step (String) 1.7이상
-        // $('#box').animate({'width': '300px'}, {duration: 2000, step: function (now, fx) {
-        //   console.log(fx);
-        //   $('#subBox').height(now);
-        // }});
+        var objs = {
+          sub1: 'obj-sub1',
+          sub2: 'obj-sub2',
+          sub3: 'obj-sub3'
+        };
 
-        //animate options : complete
-        var time = (new Date()).getTime();
-        $('#box').animate({'width': '300px'}, {duration: 3000, complete: function () {
-          var afterTime = (new Date()).getTime();
-          alert(afterTime - time);
-        }});
+        // for (var s in objs) {
+        //   var $li = $('<li/>', {text: objs[s]});
+        //   // var $li = $('<li/>', {text: item});
+        //   $eachContainer.append($li);
+        // }
 
-        //animate options : done 1.8 이상
-        // var time = (new Date()).getTime();
-        // $('#box').animate({'width': '300px'}, {duration: 3000, done: function () {
-        //   var afterTime = (new Date()).getTime();
-        //   alert(afterTime - time);
-        // }});
+        // $.each(objs, function (index, item) {
+        //   // var $li = $('<li/>', {text: objs[index]});
+        //   var $li = $('<li/>', {text: item});
+        //   $eachContainer.append($li);
+        // });
+
+        //$.extend case
+        // var obj1 = {
+        //   obj11: 'o-obj11',
+        //   obj12: 'o-obj12',
+        //   obj13: 'o-obj13'
+        // };
+        //
+        // var obj2 = {
+        //   obj21: 'o-obj21',
+        //   obj22: 'o-obj22',
+        //   obj23: 'o-obj23'
+        // };
+        //
+        // var obj3 = $.extend(obj1, obj2);
+        // console.log(obj3);
+
+        //$.inArray case
+        var inArrays = [0, 1, 2, 3];
+        // console.log($.inArray(0, inArrays));
+        // console.log($.inArray(100, inArrays));
+
+        //$.isEmpty case
+        var empty = {};
+        var nonEmpty = {ko: '한국', us: '미국'};
+        // console.log($.isEmptyObject(empty));
+        // console.log($.isEmptyObject(nonEmpt));
+
+        //$.map
+        var mapObj = {m1: 'm-m1', m2: 'm-m2'};
+        var mapArr = ['m-m1', 'm-m2'];
+        // $.map(mapObj, function (val, index) {
+        //   console.log('val :', val, ' index: ', index);
+        // });
+        // $.map(mapArr, function (val, index) {
+        //   console.log('val :', val, ' index: ', index);
+        // });
+
+        //$.now case
+        // var now = (new Date()).getTime();
+        // console.log(now);
+        // console.log($.now());
       });
     </script>
   </body>
