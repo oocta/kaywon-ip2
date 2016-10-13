@@ -54,13 +54,7 @@
         $sliderContainer.prepend(cloneLast);
         $sliderContainer.append(cloneFirst);
         
-        // #2
-        // $sliderContainer의 자식요소(li노드)의 수량이 2개 증가하였으므로, $sliderContainer의 width를 증가시킬때, 복사하여 추가된 2페이지 만큼 더 늘려주도록 수정해야합니다.
-        $sliderContainer.width((maxPage + 2) * contentWidth);
-        // $sliderContainer 의 width가 4000으로 확장되었습니다.
-        // 기본적으로 전체 페이지수는 3페이지이기 때문에 maxPage 변수를 늘리는 것이 아니라,
-        // maxPage기준으로 증가된 페이지 수만큼만 추가하는 형식으로 진행했습니다.
-        
+        $sliderContainer.width((maxPage + 2) * contentWidth).css('margin-left', -1 * contentWidth);
         
         $leftButton.on('click', function () {
           
