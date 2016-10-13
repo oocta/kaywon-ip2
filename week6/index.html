@@ -56,37 +56,38 @@
         $sliderContainer.width((maxPage + 2) * contentWidth).css('margin-left', -1 * contentWidth);
         
         $leftButton.on('click', function () {
-          
-          if (currentPage > 0) {
-            currentPage--;
-          } else {
-            currentPage = 0;
+          // 애니메이션이 플레이중일때는 페이지의 증감이 이루어져선 안되므로, isRolling이 false인 경우에만 실행코드가 동작하도록 조건을 추가합니다.
+          if (isRolling === false) {
+            if (currentPage > 0) {
+              currentPage--;
+            } else {
+              currentPage = 0;
+            }
+            
+            move(currentPage, contentWidth);
           }
-          
-          move(currentPage, contentWidth);
         });
         
         
         $rightButton.on('click', function () {
-          
-          if (currentPage < maxPage + 1) {
-            currentPage++;
-          } else {
-            currentPage = maxPage + 1;
+          // 애니메이션이 플레이중일때는 페이지의 증감이 이루어져선 안되므로, isRolling이 false인 경우에만 실행코드가 동작하도록 조건을 추가합니다.
+          if (isRolling === false) {
+            if (currentPage < maxPage + 1) {
+              currentPage++;
+            } else {
+              currentPage = maxPage + 1;
+            }
+            move(currentPage, contentWidth);
           }
-          move(currentPage, contentWidth);
-          
         });
         
         function move(cPage, cWidth) {
           
-          //애니메이션이 수행되므로 isRolling 에 true를 할당하여 애니메이션이 실행중임을 표시합니다.
           isRolling = true;
           
           $sliderContainer.animate({'margin-left': cPage * cWidth * -1 }, {
             duration: 1000,
             complete: function () {
-              //애니메이션이 끝난 후, isRolling에 false를 할당하여, 애니메이션이 모두 종료되었음을 표시합니다.
               isRolling = false;
               if (cPage === 0) {
                 currentPage = maxPage;
