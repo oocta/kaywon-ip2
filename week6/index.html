@@ -26,12 +26,8 @@
 		<script type="text/javascript" src="./js/jquery.js"></script>
 		<script type="text/javascript">
 			//자바스크립트 코드 작성 영역
-			//Step 4. 왼쪽, 오른쪽으로 무한 롤링되도록 코드를 수정합니다.
-			//무한슬라이드 이동을 구현하는 방법은,
-			//현재 데이터를 기준으로 보았을때 'red'-'blue'-'green' 으로 배치되어 있는
-			//노드를 'green'-'red'-'blue'-'green'-'red'의 구성으로 재배치하는게 핵심입니다.
-			//[0] green과 [3] green은 같은 노드로, [1] red 와 [4] red는 같은 노드로 구성합니다.
-			//(clone이나 배열을 이용한 노드 생성시에 추가하셔도 무방합니다. 본 튜토리얼은 clone을 활용하는 방향으로 진행하겠습니다.)
+			//Step 5. 다중클릭 방지.
+			//왼쪽/오른쪽 버튼 다중 클릭시 애니메이션이 중첩발생되는 것을 막기위한 코드를 작성합니다.
 			var colorsArray = ['red', 'blue', 'green'];
       
       $(document).ready(function () {
@@ -42,6 +38,9 @@
         var currentPage = 0; //현재페이지 변수
         var $leftButton = $('#leftButton'); // 왼쪽 버튼
         var $rightButton = $('#rightButton'); // 오른쪽 버튼
+        //현재 애니메이션이 진행중인지를 체크하는 변수로 'is~'접두어를 통해 Boolean값임을 정의합니다.
+        //처음 화면 진입시 애니메이션이 진행중이지 않으므로 기본값 false로 할당합니다.
+        var isRolling = false;
         
         $.each(colorsArray, function (idx, val) {
           var $li = $('<li/>', {'style': 'background-color:' + val});
@@ -84,11 +83,9 @@
             duration: 1000,
             complete: function () {
               if (cPage === 0) {
-                // [0]번째 green은 [3]번째 green의 복제이므로, [0]green으로 페이지가 이동하는 경우, 원본의 위치로 이동하도록 변경하고, currentPage(현재페이지)를 원본 [3]green의 페이지인 maxPage로 변경합니다.
                 currentPage = maxPage;
                 $sliderContainer.css('margin-left', contentWidth * currentPage * -1);
               } else if (cPage === maxPage + 1) {
-                // [4]번째 red는 [1]번째 red의 복제이므로, [4]red로 페이지가 이동하는 경우, 원본의 위치로 이동하도록 변경하고, currentPage(현재페이지)를 원본 [1]red의 페이지인 1로 변경합니다.
                 currentPage = 1;
                 $sliderContainer.css('margin-left', contentWidth * currentPage * -1);
               }
