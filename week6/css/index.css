@@ -1,8 +1,11 @@
 /*CSS for sliderContainer*/
 .imageSlider {margin: 100px auto 0 auto; width: 800px; height:592px; overflow: hidden; position: relative;}
 .imageSlider .sliderContainer {padding: 0; margin: 0;}
-.imageSlider .sliderContainer li {list-style: none; margin: 0;}
+
+.imageSlider .sliderContainer:after {clear: both; content: ' '; display: block;}
+.imageSlider .sliderContainer li {list-style: none; margin: 0; float: left;}
 .imageSlider .sliderContainer li a {display: block; line-height: 0;}
+.imageSlider .sliderContainer li,
 .imageSlider .sliderContainer li img {width: 800px; height: 592px;}
 
 .imageSlider .controller {position: absolute; left: 0; bottom: 0; width: 100%;}
