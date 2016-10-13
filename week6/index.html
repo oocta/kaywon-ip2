@@ -79,9 +79,15 @@
         });
         
         function move(cPage, cWidth) {
+          
+          //애니메이션이 수행되므로 isRolling 에 true를 할당하여 애니메이션이 실행중임을 표시합니다.
+          isRolling = true;
+          
           $sliderContainer.animate({'margin-left': cPage * cWidth * -1 }, {
             duration: 1000,
             complete: function () {
+              //애니메이션이 끝난 후, isRolling에 false를 할당하여, 애니메이션이 모두 종료되었음을 표시합니다.
+              isRolling = false;
               if (cPage === 0) {
                 currentPage = maxPage;
                 $sliderContainer.css('margin-left', contentWidth * currentPage * -1);
@@ -91,6 +97,7 @@
               }
             }
           });
+          
         }
         
       });
