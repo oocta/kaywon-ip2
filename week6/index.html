@@ -54,7 +54,17 @@
         $sliderContainer.prepend(cloneLast);
         $sliderContainer.append(cloneFirst);
         
+        //복사된 2페이지가 추가되었으므로 currentPage를 1로 업데이트했어야 하는데, 누락되었습니다.
+        //참고 바랍니다.
+        currentPage = 1;
         $sliderContainer.width((maxPage + 2) * contentWidth).css('margin-left', -1 * contentWidth);
+        
+        // 자동 슬라이드 구현을 위해 setInterval을 호출하고, rollingTimer에 반환값을 할당합니다.
+        // rollingTimer는 clearInterval 함수를 이용해, interval를 해제하기 위해 활용됩니다.
+        rollingTimer = setInterval(function () {
+          currentPage += 1;
+          move(currentPage, contentWidth);
+        }, 3000);
         
         $leftButton.on('click', function () {
           if (isRolling === false) {
