@@ -80,7 +80,20 @@
         });
         
         function move(cPage, cWidth) {
-          $sliderContainer.animate({'margin-left': cPage * cWidth * -1 }, 1000);
+          $sliderContainer.animate({'margin-left': cPage * cWidth * -1 }, {
+            duration: 1000,
+            complete: function () {
+              if (cPage === 0) {
+                // [0]번째 green은 [3]번째 green의 복제이므로, [0]green으로 페이지가 이동하는 경우, 원본의 위치로 이동하도록 변경하고, currentPage(현재페이지)를 원본 [3]green의 페이지인 maxPage로 변경합니다.
+                currentPage = maxPage;
+                $sliderContainer.css('margin-left', contentWidth * currentPage * -1);
+              } else if (cPage === maxPage + 1) {
+                // [4]번째 red는 [1]번째 red의 복제이므로, [4]red로 페이지가 이동하는 경우, 원본의 위치로 이동하도록 변경하고, currentPage(현재페이지)를 원본 [1]red의 페이지인 1로 변경합니다.
+                currentPage = 1;
+                $sliderContainer.css('margin-left', contentWidth * currentPage * -1);
+              }
+            }
+          });
         }
         
       });
