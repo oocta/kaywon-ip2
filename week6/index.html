@@ -70,10 +70,10 @@
         
         $rightButton.on('click', function () {
           
-          if (currentPage < maxPage - 1) {
+          if (currentPage < maxPage + 1) {
             currentPage++;
           } else {
-            currentPage = maxPage - 1;
+            currentPage = maxPage + 1;
           }
           move(currentPage, contentWidth);
           
