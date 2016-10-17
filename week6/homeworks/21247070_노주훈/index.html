@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+<head>
+	<meta charset="utf-8">
+	<title>Interaction Programming</title>
+	<link rel="stylesheet" href="./css/normalize.css">
+	<link rel="stylesheet" href="./css/index.css">
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+	<section>
+		<div id="imageSlider" class="imageSlider">
+			<ul id="sliderContainer" class="sliderContainer">
+				<!-- 슬라이더 아이템의 위치 -->
+			</ul>
+			<div id="controller" class="controller">
+				<button id="leftButton" class="left">왼쪽으로</button>
+				<button id="rightButton" class="right">오른쪽으로</button>
+			</div>
+		</div>
+		<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+		<p id="error" class="error">저를 삭제해주세요.</p>
+		<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+	</section>
+
+	<!-- Javascript -->
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+			$('body').prepend('<h1>이미지슬라이더</h1>'); // Quest_01
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+
+			// 5주차 퀘스트 플레시방식으로 좌측에 마지막 배열삽입 우측에 기존 첫번째배열 삽입
+			imageNames.unshift(imageNames[imageNames.length -1]);
+			imageNames.push(imageNames[1]);
+
+			for (var i = 0; i < imageNames.length; i++) { // Quest_02
+				$('ul#sliderContainer').append('<li><img src="' + imageNames[i] + '"/></li>'); // Quest_03
+			}
+
+
+			$('body').prepend($('p#moveTop')); // Quest_04
+			$('body').append($('p#moveBottom')); // Quest_05
+			$('p#error').remove(); // Quest_06
+			$('p#test').html('수정되었습니다.'); // Quest_07
+			$('p#test').remove();  // Quest_07
+
+			$('#imageSlider').css({
+				'overflow': 'hidden'
+			});
+			$('#sliderContainer > li').css('float','left');
+			$('#sliderContainer img').css('height','592px');
+			$('#sliderContainer').css('width', parseInt($('#sliderContainer').children('li').css('width') ) * $('#sliderContainer').children('li').length );
+			$('#leftButton').html('왼쪽으로').text('move left');
+			$('#rightButton').html('왼쪽으로').text('move right');
+			$('#leftButton').css({
+				'background-color':'#ff6600',
+				'color':'#fff'
+			});
+			$('#rightButton').css({
+				'background-color':'#ff8899',
+				'color':'#fff'
+			});
+			var nowMargin = 0;
+			var block = 0; // 에러방지 안전장치 
+			function widthCap (){
+				return( parseInt($('#sliderContainer').children('li').css('width') ) );
+			}
+			function move (direction){
+				if (block === 1) {
+					return;
+				}
+				block = 1;
+				$('#sliderContainer').animate({
+					'margin-left' : nowMargin + direction
+				}, {
+					duration:2000, 
+					complete: function(){
+						block = 0;
+						setTimeout(function (){ // 한번만 실행
+							$('#rightButton').click();
+						}, 3000);
+					}
+				 });
+				nowMargin = nowMargin + direction
+			}
+			$('#leftButton').click(function (){
+				if (block === 1) {
+					return;
+				}
+				if(parseInt($('#sliderContainer').css('margin-left')) >= 0 ) {
+					$('#sliderContainer').css('margin-left', -1 * widthCap () * (imageNames.length -2) );
+					nowMargin = -1 *  widthCap () * (imageNames.length -2);
+					console.log(nowMargin);
+					move(+ widthCap());
+				}else{
+					console.log(nowMargin);
+					move(+ widthCap());
+				}
+			});
+			$('#rightButton').click(function (){
+				if (block === 1) {
+					return;
+				}
+				if(parseInt($('#sliderContainer').css('margin-left')) <=  -1 * widthCap () * (imageNames.length -1) ){
+					$('#sliderContainer').css('margin-left', -1 * widthCap () );
+					nowMargin = -1 *  widthCap ();
+					console.log(nowMargin);
+					move(- widthCap());
+				}else{
+					console.log(nowMargin);
+					move(- widthCap());
+				}
+			});
+
+			setTimeout(function (){
+				$('#rightButton').click();
+			}, 3000); // 시작시 한번 돌리기
+
+			$('#sliderContainer').hover(function() {
+				$("#sliderContainer").stop();
+				console.log('on');
+			}, function() {
+				console.log('off');
+			});
+
+
+
+		</script>
+	</body>
+	</html>
