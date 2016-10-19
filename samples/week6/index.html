@@ -26,21 +26,26 @@
       $(function () {
 
         //mouseenter vs mouseover
-        $('.outter').on('mouseenter', function (evt) {
-          console.log(evt.type);
-        });
-        $('.outter').on('mouseover', function (evt) {
-          console.log(evt.type);
-        });
+        // $('.outter').on('mouseenter', function (evt) {
+        //   console.log(evt.type);
+        // });
+        // $('.outter').on('mouseover mouseenter', function (evt) {
+        //   console.log(evt.type);
+        // });
 
         var menusArray = ['arr-sub1', 'arr-sub2', 'arr-sub3'];
         var $eachContainer = $('#eachContainer');
 
         //for... case
         // for (var m = 0, loop = menusArray.length; m < loop; m++) {
-        //   var $li = $('<li/>', {text: menusArray[m]});
-        //   $eachContainer.append($li);
+        //   append(m, menusArray[m]);
+        //
         // }
+        //
+        function append(index, item) {
+            var $li = $('<li/>', {text: menusArray[m]});
+            $eachContainer.append($li);
+        }
 
         //$.each case
         // $.each(menusArray, function (index, item) {
@@ -56,9 +61,18 @@
         };
 
         // for (var s in objs) {
+        //   var param = {
+        //     text: objs[s]
+        //   };
         //   var $li = $('<li/>', {text: objs[s]});
+        //   var $li = $('<li>' + objs[s] + '</li>');
         //   // var $li = $('<li/>', {text: item});
         //   $eachContainer.append($li);
+        // }
+
+        // for (var name in param) {
+        //   console.log(param[name]);
+        //   // $('<li></li>').attr(item, param[item]);
         // }
 
         // $.each(objs, function (index, item) {
@@ -73,30 +87,33 @@
         //   obj12: 'o-obj12',
         //   obj13: 'o-obj13'
         // };
-        //
+        // console.log('obj1', obj1);
         // var obj2 = {
         //   obj21: 'o-obj21',
         //   obj22: 'o-obj22',
         //   obj23: 'o-obj23'
         // };
-        //
+        // console.log('obj2', obj2);
+        // //
         // var obj3 = $.extend(obj1, obj2);
-        // console.log(obj3);
+        // console.log('obj3', obj3);
 
         //$.inArray case
-        var inArrays = [0, 1, 2, 3];
-        // console.log($.inArray(0, inArrays));
+        // var inArrays = [10, 11, 22, 33];
+        // console.log($.inArray(10, inArrays));
         // console.log($.inArray(100, inArrays));
 
         //$.isEmpty case
         var empty = {};
         var nonEmpty = {ko: '한국', us: '미국'};
         // console.log($.isEmptyObject(empty));
-        // console.log($.isEmptyObject(nonEmpt));
+        // console.log($.isEmptyObject(nonEmpty));
 
         //$.map
         var mapObj = {m1: 'm-m1', m2: 'm-m2'};
         var mapArr = ['m-m1', 'm-m2'];
+        // console.log($.each(mapArr, function () {}));
+        // console.log($.map(mapArr, function () {}));
         // $.map(mapObj, function (val, index) {
         //   console.log('val :', val, ' index: ', index);
         // });
@@ -108,7 +125,101 @@
         // var now = (new Date()).getTime();
         // console.log(now);
         // console.log($.now());
+
+        // function append () {
+        //
+        // }
+
+        // var append = function fnc (a) {
+        //   if (a > 0) {
+        //     a--;
+        //     console.log(a);
+        //     fnc(a);
+        //   }
+        // };
+        // fnc();
+        // append(10);
+
+        function myname(a, b) {
+          console.log('this', this);
+        }
+        // myname();
+
+        var foo ={
+          myname: function () {
+            console.log('this', this);
+          },
+          yyy: {
+            mmyname: function () {
+              console.log('this', this);
+            }
+          }
+        };
+        // foo.myname();
+        // foo.yyy.mmyname();
+
+        function coo (a, b) {
+
+          console.log(this);
+          console.log(a);
+          console.log(b);
+        }
+
+        coo.apply({a: 'a'}, [1000, 500]);
+        coo.call({a: 'a'}, 1000, 500);
+
+        $('ul').on('click', function() {
+          alert('click');
+        });
+
+        // var instant = (function () {
+        //   console.log('a');
+        //   return false;
+        // });
+        //
+        // var instant = (function () {
+        //   console.log('a');
+        //   return false;
+        // }());
+
+        function ex() {
+          var page = 1;
+          function oh () {
+            alert('oh!');
+          }
+
+          return {
+            oh: oh
+          };
+        }
+
+        // oh();
+        var eo = ex();
+        // eo.oh();
+
+        var ua = (function () {
+          return navigator.userAgent;
+        }());
+        // console.log(ua);
+
       });
+
+
+
+      // foo();
+      console.log(foo)
+
+      var foo = function () {
+        console.log('foo');
+      };
+      function foo2() {
+        console.log('foo2');
+      }
+
+      console.log(foo)
+
+
+
     </script>
   </body>
 </html>

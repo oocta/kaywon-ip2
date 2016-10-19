@@ -31,6 +31,12 @@
       // Object 생성방법
       $(function () {
 
+        //CSS handling
+        // alert($('h1').css('padding'));
+        // $('h1').css('padding', '100px');
+        // alert($('h1').css('display'));
+
+
         //animate options : duration (Number or String)
         // $('#box').animate({'width': '300px'}, 1000);
         // $('#box').animate({'width': '300px'}, 5000);
@@ -40,8 +46,8 @@
         // $('#box').animate({'width': '300px'}, 4000, 'linear');
 
         //animate options : queue (Boolean)
-        // $('#box').animate({'width': '300px'}, {queue: true, duration: 2000});
-        // $('#box').animate({'height': '400px'}, {queue: true, duration: 3000});
+        // $('#box').animate({'width': '300px'}, {queue: false, duration: 2000});
+        // $('#box').animate({'height': '400px'}, {queue: false, duration: 3000});
 
         //animate options : queue (String) 1.7이상
         // $('#box').animate({'width': '300px'}, {queue: 'box', duration: 2000});
@@ -49,12 +55,16 @@
         // $('#box').dequeue('box');
         // setTimeout(function () {
         //   $('#box').dequeue('boxHeight');
-        // }, 3000);
+        // }, 5000);
 
         //animate options : step (String) 1.7이상
-        // $('#box').animate({'width': '300px'}, {duration: 2000, step: function (now, fx) {
+        // $('#box').animate({width: '600px', height: '400px'}, {duration: 2000, step: function (now, fx) {
         //   console.log(fx);
-        //   $('#subBox').height(now);
+        //   if (fx.prop === 'width') {
+        //     $('#subBox').height(now);
+        //   } else {
+        //     $('#subBox').width(now);
+        //   }
         // }});
 
         //animate options : complete

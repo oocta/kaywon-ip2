@@ -34,6 +34,14 @@
 				var item = $('<li/>').append($('<img src="' + imageNames[i] + '"/>'));
 				container.append(item);
 			}
+			$('button').on('click', function (evt) {
+				var ids = $(this).attr('id');
+				if (ids === 'leftButton') {
+
+				} else if (ids === 'rightButton') {
+
+				}
+			});
 		</script>
 	</body>
 </html>
