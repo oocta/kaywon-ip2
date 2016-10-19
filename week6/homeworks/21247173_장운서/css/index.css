@@ -1,0 +1,96 @@
+/*reset*/
+
+* {-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjust:none;-o-text-size-adjust:none;text-size-adjust:none;-webkit-touch-callout:none;padding:0;margin:0;border:0;}
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,article,aside,hgroup,header,footer,figure,figcaption,nav,section {margin:0;padding:0;border:0;font-size:100%;vertical-align:baseline;background:transparent;}
+article,aside,hgroup,header,footer,figure,figcaption,nav,section {display: block;}
+body {font-style:normal;font-size:12px;font-family:'돋움',Dotum,Helvetica,Verdana,Arial,sans-serif;color:#777;-webkit-text-size-adjust:none;}
+h1,h2,h3,h4,h5,h6 {font-weight:600;}
+strong {font-weight:600;}
+ol,ul {list-style:none;}
+blockquote,q {quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after {content:'';}
+table {border-collapse:collapse;border-spacing:0;table-layout:fixed;width:100%;}
+button {margin:0;padding:0;border:0;font:inherit;color:inherit;background:transparent;overflow:visible;cursor:pointer;line-height:1;}
+a:link,a:visited,a:hover,a,active,a:focus {text-decoration:none;cursor:pointer;color:#999;}
+legend,caption {display:none;}
+textarea {resize:vertical;font:inherit;overflow-y:auto;}
+input,select {color:inherit;font:inherit;vertical-align: middle;}
+address,i {font-style:normal;}
+table {border-collapse:collapse;table-layout:fixed;}
+img,select,input,button {vertical-align:middle;}
+em {font-style:normal;}
+
+/*CSS for sliderContainer*/
+
+
+#imageSlider{
+
+	overflow-x:hidden;
+	margin:40px auto 0;
+	position:relative;
+	width: 800px;
+}
+#imageSlider .content ul {
+	overflow:hidden;
+}
+#imageSlider .content ul li {
+	float:left;
+	/*width:600px;*/
+	text-align:center;
+	position:relative;
+}
+#imageSlider .content ul li span {
+	color:#fff;
+	font-size:120px;
+	font-weight:bold;
+	line-height:400px;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+}
+#imageSlider .content ul li img {
+	/*width:100%;*/
+	width:800px;
+	height:592px;
+}
+#imageSlider .content #controller button {
+	background:#fff;
+	border:1px solid #222;
+	display:inline-block;
+	padding:2px 8px;
+	position:absolute;
+	bottom:4px;
+	z-index:2;
+}
+#imageSlider .content #controller .left {
+	left:4px;
+}
+#imageSlider .content #controller .right {
+	right:4px;
+}
+#imageSlider .carousel {
+	text-align:center;
+	position:absolute;
+	left:0;
+	bottom:4px;
+	width:100%;
+}
+#imageSlider .carousel ul {
+	display:inline-block;
+	overflow:hidden;
+}
+#imageSlider .carousel ul li {
+	float:left;
+	margin:0 0 0 8px;
+}
+#imageSlider .carousel ul li:first-child {
+	margin-left:0;
+}
+#imageSlider .carousel ul li a {
+	background:#fff;
+	display:block;
+	width:10px;
+	height:10px;
+	border-radius:50%;
+}
