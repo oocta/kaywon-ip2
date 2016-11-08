@@ -1,0 +1,6 @@
+{
+  "name": "pikachu",
+  "age" : 10,
+  "thumb" : "http://cartoonbros.com/wp-content/uploads/2016/08/pikachu-6.png",
+  "special" : ["football", "baseball", "tennis"]
+}
