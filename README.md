@@ -17,7 +17,7 @@
 
 1. 이승하 [http://lsh41319kr.github.io/](http://lsh41319kr.github.io/)
 1. 한은진 [https://jinne202.github.io/index](https://jinne202.github.io/index)
-1. 남현우 [https://nam-hyun-woo-korea.github.io/](https://nam-hyun-woo-korea.github.io/)
+1. 남현우 [https://nam-hyun-woo-korea.github.io/portfolio/](https://nam-hyun-woo-korea.github.io/portfolio/)
 1. 정하은 [https://haney1126.github.io](https://haney1126.github.io)
 1. 조현지 [https://johyunji.github.io/](https://johyunji.github.io/)
 1. 안가은 [https://uing2938.github.io/](https://uing2938.github.io/)
