@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/index.css">
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style type="text/css">
+		*{margin:0; padding:0;}
+		#sec1{
+			min-width:100%; height:700px; 
+			position:fixed;z-index: -10;}
+		#space{
+			width:100%; height:200px;
+			background-color: gray;
+			margin:0 auto; color: white;
+			font-size: 2em;
+			text-align: center;
+			position:absolute; bottom:0;
+		}
+		#sec2{
+			width:100%; height:300px; background-color:red;
+		}
+	</style>
+</head>
+<body>
+<section id="sec1">
+<div id="imageSlider" class="imageSlider">
+			<ul id="sliderContainer" class="sliderContainer">
+			</ul>
+			<div id="controller" class="controller">
+				<button id="leftButton" class="left">왼쪽으로</button>
+				<button id="rightButton" class="right">오른쪽으로</button>
+			</div>
+		</div>
+<script type="text/javascript">
+			var imageNames = ['imgs/1.jpg', 'imgs/2.jpg', 'imgs/3.jpg'];
+
+			imageNames.unshift(imageNames[imageNames.length -1]);
+			imageNames.push(imageNames[1]);
+
+			for (var i = 0; i < imageNames.length; i++) {
+				$('ul#sliderContainer').append('<li><img src="' + imageNames[i] + '"/></li>'); // 
+			}
+
+
+			$('#imageSlider').css({
+				'overflow': 'hidden'
+			});
+			$('#sliderContainer > li').css('float','left');
+			$('#sliderContainer img').css('height','592px');
+			$('#sliderContainer').css('width', parseInt($('#sliderContainer').children('li').css('width') ) * $('#sliderContainer').children('li').length );
+			$('#leftButton').html('<');
+			$('#rightButton').html('>');
+			$('#leftButton').css({
+				'background-color':'#ff6600',
+				'color':'#fff'
+			});
+			$('#rightButton').css({
+				'background-color':'#ff8899',
+				'color':'#fff'
+			});
+			var nowMargin = 0;
+			var block = 0;  
+			function widthCap (){
+				return( parseInt($('#sliderContainer').children('li').css('width') ) );
+			}
+			function move (direction){
+				if (block === 1) {
+					return;
+				}
+				block = 1;
+				$('#sliderContainer').animate({
+					'margin-left' : nowMargin + direction
+				}, {
+					duration:2000, 
+					complete: function(){
+						block = 0;
+						setTimeout(function (){ 
+							$('#rightButton').click();
+						}, 3000);
+					}
+				 });
+				nowMargin = nowMargin + direction
+			}
+			$('#leftButton').click(function (){
+				if (block === 1) {
+					return;
+				}
+				if(parseInt($('#sliderContainer').css('margin-left')) >= 0 ) {
+					$('#sliderContainer').css('margin-left', -1 * widthCap () * (imageNames.length -2) );
+					nowMargin = -1 *  widthCap () * (imageNames.length -2);
+					console.log(nowMargin);
+					move(+ widthCap());
+				}else{
+					console.log(nowMargin);
+					move(+ widthCap());
+				}
+			});
+			$('#rightButton').click(function (){
+				if (block === 1) {
+					return;
+				}
+				if(parseInt($('#sliderContainer').css('margin-left')) <=  -1 * widthCap () * (imageNames.length -1) ){
+					$('#sliderContainer').css('margin-left', -1 * widthCap () );
+					nowMargin = -1 *  widthCap ();
+					console.log(nowMargin);
+					move(- widthCap());
+				}else{
+					console.log(nowMargin);
+					move(- widthCap());
+				}
+			});
+
+			setTimeout(function (){
+				$('#rightButton').click();
+			}, 3000); 
+
+</script>
+</section>
+<div id="space">
+<h1>INTERACTION</h1>
+</div>
+</body>
+</html>

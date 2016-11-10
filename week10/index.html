@@ -29,21 +29,20 @@
       } else {
         req = new ActiveXObject('Microsoft.XMLHTTP');
       }
-      req.open('GET', 'load.html', true);
+      req.open('GET', 'ajax.json', true);
 
       req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
-          // alert(req.responseText);
+          console.log(req.responseText);
+          var jsonData = JSON.parse(req.responseText);
+          console.log(jsonData.name);
         }
       };
 
       req.send(null);
 
       $('#loadBtn').on('click', function () {
-        // $('#container').load('load.html', function (res) {
-        //   //Success Statements
-        // });
-        $('#container').load('load.html img', function (res) {
+        $('#container').load('load.html', function (res) {
           //Success Statements
         });
       });
@@ -73,7 +72,7 @@
 
           },
           complete: function () {
-            alert('complet');
+            alert('complete');
           },
           beforeSend: function () {
             alert('beforeSend');
@@ -85,7 +84,7 @@
       });
 
       $('#getBtn').on('click', function () {
-        $.get('ajax.json', {}, function (res) {
+        $.get('ajax.json', {id:'pika', pass: 'chu'}, function (res) {
           console.log(res);
         })
       });
