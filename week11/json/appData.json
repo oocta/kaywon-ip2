@@ -1,0 +1,20 @@
+{
+  "menus": [
+    {
+      "name": "Home",
+      "class": "section red"
+    },
+    {
+      "name": "AboutMe",
+      "class": "section blue"
+    },
+    {
+      "name": "Portfolios",
+      "class": "section green"
+    },
+    {
+      "name": "Skills",
+      "class": "section yellow"
+    }
+  ]
+}
