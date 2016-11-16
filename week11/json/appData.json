@@ -2,19 +2,23 @@
   "menus": [
     {
       "name": "Home",
-      "class": "section red"
+      "class": "section red",
+      "content": "html/section1.html"
     },
     {
       "name": "AboutMe",
-      "class": "section blue"
+      "class": "section blue",
+      "content": "html/section2.html"
     },
     {
       "name": "Portfolios",
-      "class": "section green"
+      "class": "section green",
+      "content": "html/section3.html"
     },
     {
       "name": "Skills",
-      "class": "section yellow"
+      "class": "section yellow",
+      "content": "html/section4.html"
     }
   ]
 }
