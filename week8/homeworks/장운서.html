@@ -1,0 +1,165 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title>타자연습</title>
+		<meta name="generator" content="editplus">
+		<meta name="author" content="">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+
+		<style>
+			body {background:#efefed;}
+			#wrap {margin:40px auto 0;width:600px;}
+
+			.typing .string_box {}
+			.typing .string_box > div,
+			.typing .string_box > div input {background:#fff;border:1px solid #ccc;font-size:14px;text-align:center;line-height:32px;padding:4px 20px;}
+			.typing .string_box .view {color:#666;margin:0 0 4px;}
+			.typing .string_box .user {position:relative;min-height:32px;}
+			.typing .string_box .user input {background:transparent;border:0 none;box-sizing:border-box;position:absolute;left:0;top:0;width:100%;height:100%;}
+
+			.status {font-size:12px;}
+			.status ul {padding:0;margin:0;}
+			.status ul li {list-style-type:none;overflow:hidden;padding:8px 12px 0;}
+			.status ul li > div {float:left;line-height:32px;height:32px;}
+			.status ul li .tit {color:#666;overflow:hidden;width:10%;}
+			.status ul li .progress {float:left;width:90%;}
+			.status ul li .progress_bar {background:#fff;border:1px solid #999;border-radius:6px;box-sizing:border-box;overflow:hidden;position:relative;width:95%;height:12px;margin:10px 0;}
+			.status ul li .progress_bar span {background:pink;position:absolute;left:0;top:0;width:10%;height:100%;}
+			.status ul li .progress > span {float:left;width:5%;}
+		</style>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script>
+			/*
+				기능
+				0. 랜덤으로 문장 뿌려주기
+				1. 사용자의 키보드 입력
+				2. 키코드 들어올 때마다 확인
+				3. 틀리면 빨간색 맞을때까지 빨간색
+				4. 한문장을 정확히 쓴 후 엔터치면 정확도/평균정확도/현재속도/최고속도 측정
+			*/
+			
+			$(document).ready(function(){//마크업이 로드됏을때 실행해야되는 코드들
+				randomStrNum();
+
+				/*사용자의 키보드 입력*/
+				$(window).keyup(function(){
+					 inputStr = $('.typing .string_box .user input').val(); //input에 입력한 텍스트 가져오기
+					/*맞는 지 틀린 지check*/
+					strChk();
+				});
+			});
+
+
+			// 랜덤으로 문장 뿌려주기
+			var randomStr = [//문장의 리스트
+				'abcd', //index 0
+				'1234', //index 1
+				'가나다라', //index 2
+				'동해물과', //index 3
+				 '백두산이' //index 4
+			];
+
+			var inputStr;
+			var a;
+
+			function randomStrNum(){//함수 정의
+				//Math.random():0~1 랜덤한 숫자를 반환
+				//Math.floor() 실수 - > 정수 http://www.w3schools.com/jsref/jsref_random.asp
+				//length :길이 - 갯수
+				//배열의 인덱스(몇번째) 찾기 :배열이름[인덱스]
+				//.append() = innerhtml
+				a = Math.floor(Math.random()*randomStr.length); //지역변수 선언
+				$('.typing .string_box .view').append(randomStr[a]);//랜덤스트링의 a번째를 찾아주어라
+			}
+
+			//functionName(); //함수실행
+			//$(function(){}); 도큐먼트 레디
+
+			//=========================문장 뿌려주기 끝=========================//
+
+			/*사용자가 입력한 텍스트 체크하기*/
+			function strChk(){//string check
+				//사용자가 입력한 텍스트와 뿌려진 텍스트 비교
+				//randomStr[a]; == view에 뿌려진 텍스트
+
+
+				//inputStr; == 사용자가 입력한 텍스트
+				// if(randomStr[a] == inputStr){
+				// 	console.log('맞앗다.')
+				// }else{
+				// 	console.log('틀렷다.')
+				// }
+				var x='';
+				for(var i = 0; i < randomStr[a].length; i++){
+					if(randomStr[a].substring(i,i+1) != inputStr.substring(i,i+1) && i < inputStr.length){ //!부정문 체크할게 잇어서 if 와 else의 자리 바꿈 &&=교집합
+						console.log(i);
+						x += '<span style="color:red">'+randomStr[a].substring(i,i+1)+'</span>';
+					}else{
+						x += randomStr[a].substring(i,i+1);
+					}
+					//substring()//음절을 체크 띄어쓰기 까지
+				}//view에 입력된 텍스트를 한글자 씩 체크
+				$('.typing .string_box .view').empty().append(x); //view 비우기 .empty(); 비우기
+			};
+
+			//감싼 view의 내용을 뺏다가 체크한 결과를 넣어주기 체크한 결과가 틀렸으면 틀린 글자에 color:red 맞았으면 그냥 문자열로 출력
+
+
+
+		</script>
+	</head>
+	<body>
+		<div id="wrap">
+			<div class="typing">
+				<div class="string_box">
+					<div class="view"></div>
+					<div class="user"><input type="text" /></div>
+				</div>
+				<div class="status">
+					<ul>
+						<li>
+							<div class="tit">정확도</div>
+							<div class="progress">
+								<div class="progress_bar">
+									<span style="width:10%;"></span>
+								</div>
+								<span class="txt">10%</span>
+							</div>
+						</li>
+						<li>
+							<div class="tit">평균 정확도</div>
+							<div class="progress">
+								<div class="progress_bar">
+									<span style="width:10%;"></span>
+								</div>
+								<span class="txt">10%</span>
+							</div>
+						</li>
+						<li>
+							<div class="tit">현재속도</div>
+							<div class="progress">
+								<div class="progress_bar">
+									<span style="width:10%;"></span>
+								</div>
+								<span class="txt">23타/분</span>
+							</div>
+						</li>
+						<li>
+							<div class="tit">최고 속도</div>
+							<div class="progress">
+								<div class="progress_bar">
+									<span style="width:10%;"></span>
+								</div>
+								<span class="txt">23타/분</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

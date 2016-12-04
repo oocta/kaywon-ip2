@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8">
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<div class = "content">
+					<ul id="sliderContainer" class="sliderContainer">
+						<!-- 슬라이더 아이템의 위치 -->
+	                    <li>
+	                        <img src="imgs/image01.jpg" alt = "">
+	                    </li>
+	                    <li>
+	                        <img src="imgs/image02.jpg" alt = "">
+	                    </li>
+	                    <li>
+	                        <img src="imgs/image03.jpg" alt = "">
+	                    </li>
+					</ul>
+					<div id="controller" class="controller">
+						<button id="leftButton" class="left">왼쪽으로</button>
+						<button id="rightButton" class="right">오른쪽으로</button>
+					</div>
+				</div>
+				<div class = "carousel">
+					<ul>
+						<li class = "active">
+							<a href="#">1</a>
+						</li>
+						<li>
+							<a href="#">2</a>
+						</li>
+						<li>
+							<a href="#">3</a>
+						</li>
+						<li>
+							<a href="#">4</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+
+			$(document).ready(function(){
+			console.log('ready : ' + i);
+
+			item = $('#imageSlider .content ul li');	// 변수에 값을 할당 
+			var autoSlider = setInterval(function(){rightIdx()}, 3000);
+			clearInterval(autoSlider);
+			
+			$('#imageSlider .content ul').css({'width':item.width() *  item.length});
+
+			$('#leftButton').click(function(){
+				leftIdx(); // 함수 선언.	
+			});
+			$('#rightButton').click(function(){
+				rightIdx(); // 함수 선언.	
+			});
+			$('#imageSlider .carousel a').click(function(){
+				var a = $(this).parent().index();
+				i = a+1;
+				animation();
+			});
+			
+
+		});
+
+		var item; // 변수 선언
+
+		var i = 1; //가상의 인덱스, 전역변수
+
+		function leftIdx(){
+			if(i==1){
+				i=1;
+			}else{
+				i--; // i-1	
+			}
+			console.log('left : ' + i); 
+			animation();
+		}
+		function rightIdx(){
+			if(i == item.length){
+				i = item.length;
+			}else {
+				i++; 	
+			}
+			console.log('right : ' + i);
+			animation();
+		}
+
+		function animation(){
+			$('#imageSlider .sliderContainer').animate({'margin-left':-(item.width()*(i-1))});
+
+			$('#imageSlider .carousel li').removeClass('active');
+			$('#imageSlider .carousel li').eq(i-1).addClass('active');
+		}
+
+            $('#leftButton').css({
+				'background-color':'#ff6600',
+				'color':'#fff'
+			});
+			$('#rightButton').css({
+				'background-color':'#ff8899',
+				'color':'#fff'
+			});
+            
+            
+		</script>
+	</body>
+</html>

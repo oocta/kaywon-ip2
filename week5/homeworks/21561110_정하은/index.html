@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8">
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script>
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+            //Q1
+            var $imageslider = $('<h1>이미지 슬라이더</h1>');
+            var $body = $('body');
+            $body.prepend($imageslider);
+            //Q2,Q3,Q4
+            for (var i=0; i<=imageNames.length; i++){
+                $('<li/>').append('<img src="'+imageNames[i]+'">').appendTo('ul#sliderContainer');
+                }
+            //Q5
+            var $moveTop = $('p#moveTop');
+            $body.prepend($moveTop);
+            //Q6
+            var $moveBottom = $ ('p#moveBottom');
+            $body.append($moveBottom);
+            //Q7
+            var $error = $('p#error');
+            $error.remove();
+            //Q8
+            var $test = $('p#test');
+            $test.text('수정되었습니다')
+            //Q9
+            $test.html('');
+		</script>
+		<script>
+            //Q1
+            $('#imageSlider').css('overflow','hidden');
+            //Q2
+            $('#sliderContainer > li').css('float','left');
+            $('#sliderContainer img').css('height','592px');
+            //Q3
+            var lilength = $('#sliderContainer > li:first-child').length;
+            //문자열을 숫자열로 바꿔준다 = parseInt
+            var liwidth = parseInt($('#sliderContainer > li:first-child').width());
+            var sliderwidth = lilength*liwidth;
+            
+            var page = 1;
+            
+            $('#sliderContainer').css('width',sliderwidth);
+            //Q4
+            $('#leftButton').text('move left');
+            $('#rightButton').text('move right');
+            //Q5
+            $('#leftButton').css({
+                'backgroundColor':'#ff6600',
+                'color':'#fff'
+            });
+            //Q6
+            $('#rightButton').css({
+                'backgroundColor':'#ff8899',
+                'color':'#fff'
+            });
+            //Q7
+            function moveLeft(){
+                $('#sliderContainer').animate({
+                    'margin-left': liwidth * -1 * page
+                });
+                page++;
+            }
+            //Q8
+            function moveRight(){
+                page--;
+                $('#sliderContainer').animate({
+                    'margin-left': liwidth * -1 * page
+                });
+            }
+            //Q9
+            $('#leftButton').click(moveLeft);
+            $('#rightButton').click(moveRight);
+        </script>
+	</body>
+</html>

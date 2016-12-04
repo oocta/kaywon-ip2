@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8">
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+            
+            
+            //4주차 Q1"이미지 슬라이더"라는 컨텐츠를 가진 h1태그를 생성하고, body 노드의 첫번째 노드로 추가합시다
+            var $body = $('body');
+            var $h1 = $('<h1>이미지 슬라이더</h1>');
+            $body.prepend($h1);
+            
+            //4주차 Quest 02 imageNames 배열의 원소 수 만큼 li 노드객체를 생성합시다 for 반복문, $(‘<div></div>’)
+            //4주차 Quest 03 배열의 원소를 src attrubute로 갖는 img 노드를 생성하고, Q2에서 생성한 li 노드에 추가합시다 <img src=“…” />, append, appendTo
+            //4주차 Quest 04 img 노드를 포함하고 있는 li 노드를 ul#sliderContainer 노드에 추가합시다. append, appendTo
+            for(var i = 0; i<imageNames.length; i++){
+                    $('<li></li>').append($('<img src="'+imageNames[i]+'"/>')).appendTo($('ul#sliderContainer'));
+                    console.log();
+                    }
+            
+            
+            
+            
+            //4주차 Q5
+            $('p#moveTop').prependTo($body);
+            //4주차 Q6
+            $body.append($('p#moveBottom'));
+            //4주차 Q7
+            $('p#error').remove();
+            $('p#test').text('수정되었습니다');
+            $('p#test').html('');
+            
+            //5주차 Q1 #imageSlider노드의 CSS 속성 중 overflow를hidden 으로 변경합니다. 
+            $('#imageSlider').css('overflow','hidden');
+            
+            //5주차 Q2 #sliderContainer노드의 자식 li 노드의 float 속성을 left로 변경합시다. 그리고 #sliderContainer의하위 노드들 중 img 노드의 height를 592px로 변경합시다. 
+            $('#sliderContainer').children('li').css('float','left');
+            $('#sliderContainer').next("img").css('height','592px')
+            
+            //5주차 Q3 #sliderContainer노드의 CSS 속성 중 width를 자식노드 li의 width X 개수 로 변경합니다. 
+            var w = $('#sliderContainer').find('li').width() * $('#sliderContainer').find('li').length;
+            $('#sliderContainer').css('width',w);
+            
+            //5주차 Q4 #leftButton노드의 컨텐츠를 move left로,#rightButton 노드의 컨텐츠를 move right로 변경합니다. 
+            $('#leftButton').text('move left');
+            $('#rightButton').text('move right');
+            
+            //5주차 Q5 #leftButton노드의 CSS 속성 중 backgroundcolor를#ff6600 으로 변경하고 color 를 #ffffff로변경합니다. 
+            $('#leftButton').css({
+                'background-color':'#ff6600',
+                'color':'#ffffff'
+            });
+            
+            //5주차 Q6 #rightButton노드의 CSS 속성 중 backgroundcolor를#ff8899 으로 변경하고 color 를 #ffffff로변경합니다. 
+            $('#rightButton').css({
+                'background-color':'#ff8899',
+                'color':'#ffffff'
+            });
+            
+            //5주처 Q7 moveLeft 함수를 생성하고 실행시 #sliderContainer의 자식 li의 width 만큼 왼쪽으로 이동하도록 애니메이션을 작성합시다. 
+            function moveLeft(){
+                $('#sliderContainer').animate({'marginLeft':+$('#sliderContainer').find('li').width()})
+            }
+            
+            //5주차 Q8 moveRight 함수를 생성하고 실행시 #imageSlider의 자식 li의 width 만큼 오른쪽으로 이동하도록 애니메이션을 작성합시다. 
+             function moveRight(){
+            	$('#sliderContainer').animate({'marginLeft':-$('#sliderContainer').find('li').width()})
+            }
+            
+            //5주차 Q9 #leftButton 클릭시 moveLeft 함수를 실행하고,#rightButton 클릭시 moveRight 함수를 실행하도록 이벤트를 할당합시다.
+             $('#leftButton').click(function(){
+            	moveLeft();
+            });
+            $('#rightButton').click(function(){
+            	moveRight();
+            });
+
+            
+            
+            
+            
+		</script>
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8" />
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+			//Question01
+			var body = $('body');
+			var h1 = $('<h1>이미지슬라이더</h1>');
+			body.prepend(h1);
+			var j = []; //li노드 객체를 담을 빈 배열생성
+			var cc = [];//img노드 객체를 담을 빈 배열생성
+			var li = $('<li></li>');//li노드 객체 생성	
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+			//Question2
+			/*for(var i = 0; i < imageNames.length; i++ ){
+				j.push(li)//빈 배열에 li노드 객체를 담음
+			};
+			//Question3
+			for(var s= 0 ; s < 3; s++){
+				var img = $('<img />').attr('src', imageNames[s]);
+				cc.push(img)
+			}
+			for (var k = 0; k < imageNames.length; k++){
+				j[k].append(cc[k])
+			}*/
+			/* =======합체======== */
+			for(var i = 0; i < imageNames.length; i++ ){
+				j.push(li)//빈 배열에 li노드 객체를 담음
+				for(var s = 0 ; s < 3; s++){
+					var img = $('<img />').attr('src', imageNames[s]);
+					cc.push(img)
+				}
+			};
+			for (var k = 0; k < imageNames.length; k++){
+				j[k].append(cc[k])
+			}
+			//Question 4
+			$('ul#sliderContainer').append(j)
+			//Qeustion5
+			$('p#moveTop').prependTo(body);
+			//Question6
+			$('p#moveBottom').appendTo(body);
+			//Question7
+			$('p#error').html('');
+			$('p#test').html('수정되었습니다.')
+			$('p#test').remove();
+		</script>
+	</body>
+</html>
