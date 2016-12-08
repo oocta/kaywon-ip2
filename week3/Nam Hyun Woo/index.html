@@ -61,6 +61,21 @@
     $("li").addClass("active");
     $(".cls02").addClass("current");
     $("li").eq(0).children("a").addClass("index-zero");
+    //alert($("#radioContainer").children().length);
+    //alert($(".cls02").parent().index());
+
+    console.log($("#radioContainer").children("input:eq(0)").val());
+    console.log($("#radio01").val());
+    console.log($("#radioContainer input").val());
+    console.log($("#radioContainer").children("input").val());
+    console.log($("#radioContainer input").eq(0).val());
+    console.log($("#radioContainer input:first").val());
+    console.log($("#radioContainer input:eq(0)").val());
+    console.log($("input").nextAll("#radio01").val());
+    console.log($("#radioContainer").find("input:eq(0)").val());
+    console.log($("#radioContainer").has("#radio01").val());
+    console.log($("#radioContainer:first-child").val());
+    //총 8개 출력.
   </script>
 </body>
 

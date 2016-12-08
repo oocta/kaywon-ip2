@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8">
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+            //quest1
+            var $imageslider = $('<h1>이미지 슬라이더</h1>');
+            var $body = $('body');
+            $body.prepend($imageslider);
+            //quest2, quest3, quest4 
+            for (var i=0; i<imageNames.length; i++){
+                $('<li/>').append('<img src="'+imageNames[i]+'">').appendTo('ul#sliderContainer');
+            }
+            //quest5 
+            var $moveTop = $('p#moveTop');
+            $body.prepend($moveTop);
+            //quest6
+            var $moveBottom = $ ('p#moveBottom');
+            $body.append($moveBottom);
+            //quest7
+            var $error = $('p#error');
+            $error.remove();
+            //quest8
+            var $test = $('p#test');
+            $test.text('수정되었습니다')
+            //quest9
+            $test.html('');
+            //5주차
+            //quest1 
+            var $imageSlider = $('#imageSlider');
+            $imageSlider.css('overflow','hidden');
+            //quest2 
+            var $sliderContainer = $('#sliderContainer');
+            $sliderContainer.children('li').css('float','left');
+            $('ul#sliderContainer img').css('height','592px');
+            //quest3 
+            var $goslider = $sliderContainer.children('li').width();
+            
+            $sliderContainer.css({
+                'width' : $goslider * $sliderContainer.children('li').length
+            });
+            //quest4
+            $('#leftButton').text('move left');
+            $('#rightButton').text('move right');
+            //quest5
+            $('#leftButton').css({
+                'background-color':'#ff6600',
+                'color':'#ffffff'
+            });
+            //quest6
+            $('#rightButton').css({
+                'background-color':'#ff8899',
+                'color':'#ffffff'
+            });
+            //quest7
+            var page = 1;
+            var moveLeft = function (){
+                page--;
+                $sliderContainer.animate({'margin-left':$goslider * -1 *page},500);
+            }
+            
+            var moveRight = function (){
+                $sliderContainer.animate({'margin-left':$goslider * -1 *page},500);
+                page++;
+            }
+            
+            
+            //quest9
+            $('#leftButton').on('click',function(e){
+                if (e.type ==='click'){
+                    moveLeft();
+                }
+            });
+            $('#rightButton').on('click',function(e){
+                if (e.type ==='click'){
+                    moveRight();
+                }
+            });
+            
+		</script>
+	</body>
+</html>

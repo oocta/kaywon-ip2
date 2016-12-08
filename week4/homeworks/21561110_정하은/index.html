@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8">
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script>
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+            //Q1
+            var $imageslider = $('<h1>이미지 슬라이더</h1>');
+            var $body = $('body');
+            $body.prepend($imageslider);
+            //Q2,Q3,Q4
+            for (var i=0; i<=imageNames.length; i++){
+                $('<li/>').append('<img src="'+imageNames[i]+'">').appendTo('ul#sliderContainer');
+                }
+            //Q5
+            var $moveTop = $('p#moveTop');
+            $body.prepend($moveTop);
+            //Q6
+            var $moveBottom = $ ('p#moveBottom');
+            $body.append($moveBottom);
+            //Q7
+            var $error = $('p#error');
+            $error.remove();
+            //Q8
+            var $test = $('p#test');
+            $test.text('수정되었습니다')
+            //Q9
+            $test.html('');
+		</script>
+	</body>
+</html>

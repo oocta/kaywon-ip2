@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .container {
+        width: 100%;
+        min-height: 100%;
+        position: fixed;
+        height: auto;
+        z-index: 1;
+      }
+      .box {
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 4rem;
+        height: 400px;
+        background-color: gray;
+        transform: translate3d(0px, 0px, 0px);
+        transition-duration: .8s;
+        transform-origin: right top;
+        transition-property: transform;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container" class="container">
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script>
+    $(function() {
+
+      //테스트용 아이템 생성
+      var $container = $('#container');
+      for (var i = 0, loop = 10; i < loop; i++) {
+        var $box = $('<article/>', {'class': 'box'});
+        var $thumb = $('<div/>', {'class': 'thumb'});
+        $box.append($thumb);
+        $container.append($box);
+      }
+
+      // 실제 컨테이너의 높이만큼 body의 높이를 조정하여, 스크롤 생성.
+      $('body').height($('#container').height());
+
+      $(window).on('scroll', function () {
+        var top = $(window).scrollTop();
+        $('.box').each(function (idx) {
+          var $self = $(this);
+          var divine = parseInt($self.offset().top, 10) + parseInt($self.height(), 10) > top ? 0 : idx;
+          setTimeout(function () {
+            $self.css({transform: 'translate3d(0px, ' + (top) * -1 + 'px, 0px)'});
+          }, 30 * (idx - divine));
+        });
+      });
+    });
+    </script>
+  </body>
+</html>

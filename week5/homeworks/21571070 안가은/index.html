@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8">
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+			//Quest01 "이미지슬라이더"라는 콘텐츠를 가진 h1 태그를 생성하고, body 노드의 첫번째 노드로 추가
+			var $body = $('body');
+			
+			$body.prepend($('<h1>이미지슬라이더</h1>'))
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+			//Quest02 imgaNames 배열의 원소 수만큼 li 노드객체를 생성
+			//Quest03 배열의 원소를 src attrubute로 갖는 img 노드를 생성, li노드에 추가
+			//Quest04 img노드를 포함한 li노드를 ul#sliderContainer에 추가
+			for(var i=0; i<imageNames.length; i++){
+				var $li = $('<li></li>');
+				$li.prependTo('#sliderContainer');
+				var $img = $('<img>');
+				$img.attr('src', imageNames[i]);
+				$li.append($img);
+			}
+			//Quest05 p#moveTop노드를 body의 가장 위로 이동
+			$body.prepend($('p#moveTop'));
+			//Quest06 p#moveBottom노드를 body의 가장 아래로 이동
+			$body.append($('p#moveBottom'));
+			//Quest07 p#error 노드 삭제
+			//Quest07 p#test노드의 내용을 '수정되었습니다'로 수정
+			//Quest07 p#test 노드 내용 모두 삭제
+			$('p#error').remove();
+			$('p#test').text('수정되었습니다.');
+			$('p#test').html('');
+			//Quest01 #imageSlider노드의 CSS 속성 중 overflow를 hidden으로 변경
+			$('#imageSlider').css('overflow', 'hidden');
+			//Quest02 #sliderContainer노드의 자식 li노드의 float 속성을 left로 변경하고, #sliderContatiner의 하위 노드듣 중 img 노드의 height를 592px로 변경
+			var $sliderContainer = $('#sliderContainer');
+			$sliderContainer.children('li').css('float', 'left');
+			$sliderContainer.find('img').css('height', '592px');
+			//Quest03 #sliderContainer 노드의 CSS 속성 중 width를 자식 노드 li의 width X 개수로 변경
+			console.log($sliderContainer.children('li').width() * $sliderContainer.children('li').length);
+			$sliderContainer.css('width', parseInt($sliderContainer.children('li').css('width')) * $sliderContainer.children('li').length);
+			//Quest04 #leftButton 콘텐츠를 move left로, #rightButton 콘텐츠를 move right로 변경
+			$('#leftButton').html('move left');
+			$('#rightButton').html('move right');
+			//Quest05 #leftButton의 CSS 속성중 background-color를 #ff6600로, color를 #fff로 변경
+			$('#leftButton').css({'background-color': '#ff6600', 'color': '#fff'});
+			//Quest06 #rightButton의 CSS 속성중 background-color를 #ff8899로, color를 #fff로 변경
+			$('#rightButton').css({'background-color': '#ff8899', 'color': '#fff'});
+			//Quest07 moveLeft 함수를 생성하고 실행시 #imageSlider이 자식 li의 width만큼 왼쪽으로 이동하는 애니메이션 작성
+			var w = parseInt($sliderContainer.children('li').css('width'));
+			function moveLeft(){
+				$sliderContainer.animate({
+					'margin-right' : w
+				});
+			}
+			//Quest08 moveRight 함수를 생성하고 실행시 #imageSlider이 자식 li의 width만큼 오른쪽으로 이동하는 애니메이션 작성
+			function moveRight(){
+				$sliderContainer.animate({
+					'margin-left' : w * -1
+				});
+			}
+			$('#leftButton').click(moveLeft);
+			$('#rightButton').click(moveRight);
+		</script>
+	</body>
+</html>

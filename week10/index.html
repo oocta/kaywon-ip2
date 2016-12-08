@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Ajax Tutorial</title>
+  </head>
+  <style media="screen">
+    img {width: 200px; height: auto;}
+  </style>
+  <body>
+    <div id="container"></div>
+    <div class="button-group">
+      <button id="loadBtn">$(selector).load</button>
+      <button id="ajaxBtn">$.ajax</button>
+      <button id="getBtn">$.get</button>
+      <button id="getJSONBtn">$.getJSON</button>
+      <button id="getScriptBtn">$.getScript</button>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script>
+    //XHR
+    $(function () {
+
+      var $container = $('#container');
+
+      var req;
+      if (window.XMLHttpRequest) {
+        req = new XMLHttpRequest();
+      } else {
+        req = new ActiveXObject('Microsoft.XMLHTTP');
+      }
+      req.open('GET', 'ajax.json', true);
+
+      req.onreadystatechange = function () {
+        if (req.readyState === 4 && req.status === 200) {
+          console.log(req.responseText);
+          var jsonData = JSON.parse(req.responseText);
+          console.log(jsonData.name);
+        }
+      };
+
+      req.send(null);
+
+      $('#loadBtn').on('click', function () {
+        $('#container').load('load.html', function (res) {
+          //Success Statements
+        });
+      });
+
+      $('#ajaxBtn').on('click', function () {
+        //ajax
+        $.ajax('ajax.json', {
+          type: 'GET',
+          dataType: 'json',
+          async: true,
+          success: function (res) {
+            alert('success');
+            var $name = $('<p/>', {text: res.name});
+            var $age = $('<p/>', {text: res.age});
+            var $thumb = $('<img/>', {src: res.thumb});
+            var $special = $('<ul/>');
+
+            $.map(res.special, function (item) {
+              var $li = $('<li/>', {text: item});
+              $special.append($li);
+            });
+
+            $container.append($name);
+            $container.append($age);
+            $container.append($thumb);
+            $container.append($special);
+
+          },
+          complete: function () {
+            alert('complete');
+          },
+          beforeSend: function () {
+            alert('beforeSend');
+          },
+          error: function () {
+            throw new Error('call ajax failed. try again');
+          }
+        });
+      });
+
+      $('#getBtn').on('click', function () {
+        $.get('ajax.json', {id:'pika', pass: 'chu'}, function (res) {
+          console.log(res);
+        })
+      });
+
+      $('#getJSONBtn').on('click', function () {
+        $.getJSON('ajax.json', function (res) {
+          console.log(res);
+        })
+      });
+
+      $('#getScriptBtn').on('click', function () {
+        $.getScript('js/test.js', function (res) {
+          console.log(res);
+        })
+      });
+
+    });
+    </script>
+  </body>
+</html>

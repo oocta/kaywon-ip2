@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-framework="jquery">
+	<head>
+		<meta charset="utf-8" />
+		<title>Interaction Programming</title>
+		<link rel="stylesheet" href="./css/normalize.css">
+		<link rel="stylesheet" href="./css/index.css">
+	</head>
+	<body>
+		<p id="moveBottom" class="move">저를 아래쪽으로 이동시켜주세요.</p>
+		<section>
+			<div id="imageSlider" class="imageSlider">
+				<ul id="sliderContainer" class="sliderContainer">
+					<!-- 슬라이더 아이템의 위치 -->
+				</ul>
+				<div id="controller" class="controller">
+					<button id="leftButton" class="left">왼쪽으로</button>
+					<button id="rightButton" class="right">오른쪽으로</button>
+				</div>
+			</div>
+			<p id="moveTop" class="move">저를 위쪽으로 이동시켜주세요.</p>
+			<p id="error" class="error">저를 삭제해주세요.</p>
+			<p id="test" class="test">저를 <span>수정</span>해주세요.</p>
+		</section>
+
+		<!-- Javascript -->
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript">
+			//자바스크립트 코드 작성 영역
+			//Question01
+			var body = $('body');
+			var h1 = $('<h1>이미지슬라이더</h1>');
+			body.prepend(h1);
+			var j = []; //li노드 객체를 담을 빈 배열생성
+			var cc = [];//img노드 객체를 담을 빈 배열생성	
+			var imageNames = ['./imgs/image01.jpg', './imgs/image02.jpg', './imgs/image03.jpg'];
+			//Question2
+			/*for(var i = 0; i < imageNames.length; i++ ){
+				j.push(li)//빈 배열에 li노드 객체를 담음
+			};
+			//Question3
+			for(var s= 0 ; s < imageNames.length; s++){
+				var img = $('<img />').attr('src', imageNames[s]);
+				cc.push(img)
+			}
+			for (var k = 0; k < imageNames.length; k++){
+				j[k].append(cc[k])
+			}*/
+			/* =======합체======= */
+			for(var i = 0; i < imageNames.length; i++ ){
+				var li = $('<li></li>');//li노드 객체 생성
+				j.push(li)//빈 배열에 li노드 객체를 담음
+				for(var s = 0 ; s < imageNames.length; s++){
+					var img = $('<img />').attr('src', imageNames[s]);
+					cc.push(img)
+				}
+			};
+			for (var k = 0; k < imageNames.length; k++){
+				j[k].append(cc[k])
+			}
+			//Question 4
+			$('ul#sliderContainer').append(j)
+			//Qeustion5
+			$('p#moveTop').prependTo(body);
+			//Question6
+			$('p#moveBottom').appendTo(body);
+			//Question7
+			$('p#error').html('');
+			$('p#test').html('수정되었습니다.')
+			$('p#test').remove();
+			/* ========10.06 ======== */
+			/* Question 01 */
+			$('#imageSlider').css('overflow', 'hidden');
+			/* Question 02 */
+			$('#sliderContainer').children('li').css('float', 'left')
+			$('#sliderContainer').find('img').css('height', '592px')
+			/* Question 03 */
+			var liLength = $('#sliderContainer').children(li).length
+			$('#sliderContainer').css({
+				'width': li.width() * liLength
+			})
+			/* Question 04 */
+			$('#leftButton').text('move left');
+			$('#rightButton').text('move right');
+			/* Question 05 */
+			$('#leftButton').css({
+				backgroundColor : '#ff6600',
+				color : '#ffffff'
+			})
+			/* Question 06 */
+			$('#rightButton').css({
+				backgroundColor : '#ff8899',
+				color : '#ffffff'
+			})
+			var currentPage = 1;
+			$(document).ready(function(){
+				li.clone().prependTo('#sliderContainer');
+				li.clone().appendTo('#sliderContainer');
+				$('#sliderContainer').children('li:last-child').find('img').attr('src', imageNames[0])
+				var $sliderContainer = $('#sliderContainer');
+				var maxPage = $('#sliderContainer').children(li).length;
+				var contentWidth = $('#sliderContainer').children(li).width();
+				var rollingTimer = 0;
+				var isMouseOver = false;
+				function stargInterval(){
+					rollingTimer = setInterval(function(){
+						if (currentPage < maxPage){
+						move(currentPage, contentWidth);
+						currentPage++
+						}	
+						},1000)	
+				}
+				function stopInterval(){
+					clearInterval(rollingTimer)
+				}
+				function makeInterval() {
+					$sliderContainer.children('li').mouseenter(function(){
+						stargInterval()
+					})
+					$sliderContainer.children('li').mouseleave(function(){
+						stopInterval()
+					})
+				}
+				/*var currentPage = 1;*/
+				$sliderContainer.width(maxPage * contentWidth);
+				$sliderContainer.css({marginLeft : -1 * contentWidth})
+				var isRolling = false;
+				function move(cPage, cWidth) {
+					/*if(isRolling){ //==================== 5-2, 5-3 해결 안됨 
+						return false;
+					}*/
+					//isRolling = true;
+					$sliderContainer.animate({'margin-left': cPage * cWidth * -1 }, 1000,function(){
+							if(cPage == 4){
+								$sliderContainer.css({marginLeft: cWidth * -1})
+								currentPage = 1;
+							}
+							else if (cPage == 0){
+								$sliderContainer.css({marginLeft: cWidth * -1 * (maxPage - 2)})
+								currentPage = 3;
+							}
+					})
+				};
+				$('#leftButton').click(function(){
+					if (currentPage < maxPage){
+						move(currentPage, contentWidth);
+						currentPage++
+					}
+				});
+				$('#rightButton').click(function(){
+					if(currentPage > 0){
+						currentPage--
+						move(currentPage, contentWidth)	
+					}
+				});
+				makeInterval();
+				//stargInterval();
+			});
+			/*
+			 Question 07 
+			var page = 1;
+			var moveLeft = function mleft() {
+				if(page < liLength)
+					{
+					console.log(page)
+					$('#sliderContainer').animate({marginLeft : li.width() * -1 * page})
+					
+					++page;
+						
+					}
+				else{
+					page = 0;
+					mleft();
+				}
+			}
+			/* Questino 08
+			/*var moveRight = function mright() {
+				console.log(page)
+				if(page < liLength){
+					--page;
+					$('#sliderContainer').animate({marginLeft : li.width() * -1 * page})		
+				}
+				else{
+					page = liLength;
+					mright();
+				}
+			}
+			/* Question 09 
+			$('#leftButton').click(function(){
+				moveLeft();
+			});
+			$('#rightButton').click(function(){
+				moveRight();
+			});
+			/* =========== 10/13 =========== */
+		</script>
+	</body>
+</html>
